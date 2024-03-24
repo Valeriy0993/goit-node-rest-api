@@ -9,8 +9,9 @@ import {
 
 export const getAllContacts = async (req, res, next) => {
   try {
-    const result = await contactsService.listContacts();
-    res.json(result);
+    const results = await contactsService.listContacts();
+
+    res.json(results);
   } catch (error) {
     next(error);
   }
@@ -18,10 +19,10 @@ export const getAllContacts = async (req, res, next) => {
 
 export const getOneContact = async (req, res, next) => {
   try {
-    const { id } = req.perems;
-    const results = await contactsService.getContactById(id);
+    const { id } = req.params;
+    const result = await contactsService.getContactById(id);
     if (!result) {
-      throw HttpError(404, "Not Found");
+      throw HttpError(404, "Not found");
     }
     res.json(result);
   } catch (error) {
@@ -69,6 +70,7 @@ export const updateContact = async (req, res, next) => {
     if (!result) {
       throw HttpError(404, "Not found");
     }
+
     res.json(result);
   } catch (error) {
     next(error);
