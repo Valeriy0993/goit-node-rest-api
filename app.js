@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 
 import contactsRouter from "./routes/contactsRouter.js";
 
-import { DB_HOST } from "./config.js";
+// import { DB_HOST } from "./config.js";
 
 const app = express();
 
@@ -23,6 +23,9 @@ app.use((err, req, res, next) => {
   const { status = 500, message = "Server error" } = err;
   res.status(status).json({ message });
 });
+
+const DB_HOST =
+  "mongodb+srv://Valeriy:V3bHNHprEv13lkvs@cluster0.7egahfb.mongodb.net/my-contacts?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
   .connect(DB_HOST)
